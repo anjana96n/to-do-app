@@ -2,26 +2,33 @@
   <!-- Left side - Add Task Form -->
   <div class="add-task-section">
     <h2>Add New Task</h2>
-    <div class="task-form">
-      <input #taskTitle placeholder="Title" class="form-input" />
-      <textarea #taskDesc placeholder="Description" class="form-input"></textarea>
-      <input #taskDate type="date" placeholder="Due Date" class="form-input" />
-      <select #taskPriority class="form-input">
-        <option value="LOW">Low Priority</option>
-        <option value="MEDIUM">Medium Priority</option>
-        <option value="HIGH">High Priority</option>
-      </select>
-      <button class="add-button" (click)="addTask(taskTitle.value, taskDesc.value, taskDate.value, taskPriority.value)">
-        Add Task
-      </button>
-    </div>
+    <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm)">
+      <div class="task-form">
+        <input #taskTitle="ngModel" name="title" placeholder="Title" class="form-input" ngModel required />
+        <textarea #taskDesc="ngModel" name="description" placeholder="Description" class="form-input" ngModel required></textarea>
+        <input #taskDate="ngModel" type="date" name="dueDate" class="form-input" ngModel required />
+        <select #taskPriority="ngModel" name="priority" class="form-input" [(ngModel)]="task.priority" required>
+          <option value="LOW">Low Priority</option>
+          <option value="MEDIUM" selected>Medium Priority</option>
+          <option value="HIGH">High Priority</option>
+        </select>
+        <div *ngIf="titleError" class="error-message">{{ titleError }}</div>
+        <button class="add-button" type="submit">
+          Add Task
+        </button>
+      </div>
+    </form>
   </div>
 
   <!-- Right side - Task List -->
   <div class="task-list-section">
     <h2>Available Tasks</h2>
     <div class="task-list">
-      @for (task of tasks.slice(0, 5); track task.id) {
+      <div *ngIf="tasks.length === 0">
+        <p>No Tasks Available</p>
+      </div>
+
+      <div *ngFor="let task of tasks.slice(0, 5); trackBy: trackTask">
         <div class="task-card" [class]="'priority-' + task.priority.toLowerCase()">
           <div class="task-header">
             <h3>{{ task.title }}</h3>
@@ -33,8 +40,7 @@
             <span class="priority-badge">{{ task.priority }}</span>
           </div>
         </div>
-      }
+      </div>
     </div>
   </div>
 </div>
-  

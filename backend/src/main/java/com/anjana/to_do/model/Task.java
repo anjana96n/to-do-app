@@ -18,14 +18,10 @@ public class Task {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private Priority priority; // LOW, MEDIUM, HIGH
+    private Priority priority;
 
     @Temporal(TemporalType.DATE)
     private Date dueDate;
 
     private boolean completed = false;
-}
-
-enum Priority {
-    LOW, MEDIUM, HIGH
 }
