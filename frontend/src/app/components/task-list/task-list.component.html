@@ -1,22 +1,40 @@
-<div class="container">
-    <h1>To-Do List</h1>
-  
-    <input #taskTitle placeholder="Title" />
-    <input #taskDesc placeholder="Description" />
-    <input #taskDate type="date" placeholder="Due Date" />
-    <select #taskPriority>
-      <option>LOW</option>
-      <option>MEDIUM</option>
-      <option>HIGH</option>
-    </select>
-    <button (click)="addTask(taskTitle.value, taskDesc.value, taskDate.value, taskPriority.value)">Add Task</button>
-  
-    <div *ngFor="let task of tasks">
-      <h3>{{ task.title }}</h3>
-      <p>{{ task.description }}</p>
-      <p>Due: {{ task.dueDate }}</p>
-      <p>Priority: {{ task.priority }}</p>
-      <button (click)="completeTask(task.id)">Done</button>
+<div class="task-container">
+  <!-- Left side - Add Task Form -->
+  <div class="add-task-section">
+    <h2>Add New Task</h2>
+    <div class="task-form">
+      <input #taskTitle placeholder="Title" class="form-input" />
+      <textarea #taskDesc placeholder="Description" class="form-input"></textarea>
+      <input #taskDate type="date" placeholder="Due Date" class="form-input" />
+      <select #taskPriority class="form-input">
+        <option value="LOW">Low Priority</option>
+        <option value="MEDIUM">Medium Priority</option>
+        <option value="HIGH">High Priority</option>
+      </select>
+      <button class="add-button" (click)="addTask(taskTitle.value, taskDesc.value, taskDate.value, taskPriority.value)">
+        Add Task
+      </button>
     </div>
   </div>
+
+  <!-- Right side - Task List -->
+  <div class="task-list-section">
+    <h2>Available Tasks</h2>
+    <div class="task-list">
+      @for (task of tasks.slice(0, 5); track task.id) {
+        <div class="task-card" [class]="'priority-' + task.priority.toLowerCase()">
+          <div class="task-header">
+            <h3>{{ task.title }}</h3>
+            <button class="done-button" (click)="completeTask(task.id!)">Done</button>
+          </div>
+          <p class="task-description">{{ task.description }}</p>
+          <div class="task-footer">
+            <span class="due-date">Due: {{ task.dueDate | date }}</span>
+            <span class="priority-badge">{{ task.priority }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
   
