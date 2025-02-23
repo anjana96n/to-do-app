@@ -80,8 +80,8 @@ export class TaskListComponent implements OnInit {
     this.tasks = this.tasks.filter(task => task.id !== id);
   }
 
-  trackTask(index: number, task: any): number {
-    return task.id;  
+  trackTask(index: number, task: Task): number {
+    return task.id || index;  // Use index as fallback if id is undefined
   }
   
 }
