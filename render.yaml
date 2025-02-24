@@ -27,9 +27,3 @@ services:
         value: 1234
     plan: free
     
-  - name: angular-frontend
-    type: web
-    runtime: docker
-    image:
-      url: "docker.io/anjanandev/to-do-app-angular:v1.0"
-    plan: free
