@@ -2,7 +2,8 @@ services:
   - name: postgres-db
     type: pserv  # Persistent service for databases
     runtime: docker
-    image: "pdocker.io/anjanandev/postgres:v1.0"
+    image: "docker.io/anjanandev/to-do-app-angular@sha256:sha256:2d9b9a3f8e6644e3707d8c60dc490032f83d8eedeaee3c80b655ed1fc347a106"
+
     envVars:
       - key: POSTGRES_DB
         value: todo_db
