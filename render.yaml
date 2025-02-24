@@ -1,0 +1,35 @@
+services:
+  - name: postgres-db
+    type: pserv  # Persistent service for databases
+    runtime: docker
+    image: postgres:14-alpine
+    envVars:
+      - key: POSTGRES_DB
+        value: todo_db
+      - key: POSTGRES_USER
+        value: postgres
+      - key: POSTGRES_PASSWORD
+        value: 1234
+    plan: free
+
+  - name: springboot-backend
+    type: web
+    runtime: docker
+    image: anjanandev/to-do-app-springboot:v1.0  
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://postgres-db:5432/todo_db
+      - key: SPRING_DATASOURCE_USERNAME
+        value: postgres
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 1234
+    plan: free
+
+  - name: angular-frontend
+    type: web
+    runtime: docker
+    image: anjanandev/to-do-app-angular:v1.0  
+    envVars:
+      # - key: API_URL
+      #   value: https://springboot-backend.onrender.com  # Update if needed
+    plan: free
