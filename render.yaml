@@ -16,7 +16,8 @@ services:
   - name: springboot-backend
     type: web
     runtime: docker
-    image: "docker.io/anjanandev/to-do-app-springboot:v1.0"
+    image:
+      url: "docker.io/anjanandev/to-do-app-springboot:v1.0"
     envVars:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:postgresql://postgres-db:5432/todo_db
@@ -29,7 +30,8 @@ services:
   - name: angular-frontend
     type: web
     runtime: docker
-    image: "docker.io/anjanandev/to-do-app-angular:v1.0"
+    image:
+      url: "docker.io/anjanandev/to-do-app-angular:v1.0"
     envVars:
       # - key: API_URL
       #   value: "https://springboot-backend.onrender.com"  # Ensure correct API URL
