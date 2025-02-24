@@ -33,6 +33,6 @@ services:
     image: 
       url: "docker.io/anjanandev/to-do-app-angular:v1.0"
     envVars:
-      # - key: API_URL
-      #   value: "https://springboot-backend.onrender.com"  # Ensure correct API URL
+      - key: API_URL
+        value: "https://springboot-backend.onrender.com"  # Ensure correct API URL
     plan: free
