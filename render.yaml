@@ -30,6 +30,6 @@ services:
   - name: angular-frontend
     type: web
     runtime: docker
-    image: 
+    image:
       url: "docker.io/anjanandev/to-do-app-angular:v1.0"
     plan: free
