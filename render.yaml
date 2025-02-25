@@ -3,7 +3,7 @@ services:
     type: pserv  # Persistent service for databases
     runtime: docker
     image:
-      url: "pdocker.io/anjanandev/postgres:v1.0"
+      url: "docker.io/anjanandev/postgres:v1.0"  # Corrected the image URL
     envVars:
       - key: POSTGRES_DB
         value: todo_db
