@@ -3,7 +3,7 @@ services:
     type: pserv  # Persistent service for databases
     runtime: docker
     image:
-      url: "pdocker.io/anjanandev/postgres:v1.0"
+      url: "docker.io/anjanandev/postgres:v1.0"  # Corrected the image URL
     envVars:
       - key: POSTGRES_DB
         value: todo_db
@@ -27,11 +27,11 @@ services:
         value: 1234
     plan: free
     
-  # - name: angular-frontend
-  #   type: web
-  #   runtime: docker
-  #   image: "docker.io/anjanandev/to-do-app-angular:v1.0"
-  #   envVars:
-  #     # - key: API_URL
-  #     #   value: "https://springboot-backend.onrender.com"  # Ensure correct API URL
-  #   plan: free
+  - name: angular-frontend
+    type: web
+    runtime: docker
+    image: "docker.io/anjanandev/to-do-app-angular:v1.0"
+    envVars:
+      # - key: API_URL
+      #   value: "https://springboot-backend.onrender.com"  # Ensure correct API URL
+    plan: free
